@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FutureFixus - Visionary Real Estate Builder</title>
+
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#00A65A',secondary:'#34D399'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+scroll-behavior: smooth;
+}
+.custom-switch {
+position: relative;
+display: inline-block;
+width: 44px;
+height: 24px;
+}
+.custom-switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.switch-slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+transition: .4s;
+border-radius: 24px;
+}
+.switch-slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .switch-slider {
+background-color: #00A65A;
+}
+input:checked + .switch-slider:before {
+transform: translateX(20px);
+}
+input[type="range"] {
+-webkit-appearance: none;
+width: 100%;
+height: 8px;
+background: #e5e7eb;
+border-radius: 5px;
+outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 18px;
+height: 18px;
+background: #00A65A;
+border-radius: 50%;
+cursor: pointer;
+}
+.custom-checkbox {
+position: relative;
+display: inline-block;
+width: 20px;
+height: 20px;
+}
+.custom-checkbox input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.checkbox-mark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+background-color: #fff;
+border: 2px solid #d1d5db;
+border-radius: 4px;
+}
+.custom-checkbox input:checked ~ .checkbox-mark {
+background-color: #00A65A;
+border-color: #00A65A;
+}
+.checkbox-mark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.custom-checkbox input:checked ~ .checkbox-mark:after {
+display: block;
+}
+.custom-checkbox .checkbox-mark:after {
+left: 6px;
+top: 2px;
+width: 5px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.custom-radio {
+position: relative;
+display: inline-block;
+width: 20px;
+height: 20px;
+}
+.custom-radio input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.radio-mark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+background-color: #fff;
+border: 2px solid #d1d5db;
+border-radius: 50%;
+}
+.custom-radio input:checked ~ .radio-mark {
+border-color: #00A65A;
+}
+.radio-mark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.custom-radio input:checked ~ .radio-mark:after {
+display: block;
+}
+.custom-radio .radio-mark:after {
+top: 4px;
+left: 4px;
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background: #00A65A;
+}
+.service-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.portfolio-item:hover .portfolio-overlay {
+opacity: 1;
+}
+.testimonial-card {
+transition: transform 0.3s ease;
+}
+.testimonial-card:hover {
+transform: translateY(-5px);
+}
+.process-step::after {
+content: '';
+position: absolute;
+top: 28px;
+left: 50%;
+width: 100%;
+height: 2px;
+background-color: #e5e7eb;
+z-index: -1;
+}
+.process-step:last-child::after {
+display: none;
+}
+@media (max-width: 768px) {
+.process-step::after {
+top: auto;
+left: 28px;
+width: 2px;
+height: 100%;
+}
+}
+</style>
+</head>
+<body class="bg-white">
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-95 shadow-sm">
+<div class="container mx-auto px-10 py-4 flex justify-between items-center">
+<a href="#" class="text-3xl font-['Pacifico'] text-primary"><img src="assets/images/main_logo.png" width="200px" height="80px" alt="logo"></a>
+<div class="hidden md:flex space-x-8">
+<a href="#about" class="text-gray-700 hover:text-primary font-medium">About</a>
+<a href="#services" class="text-gray-700 hover:text-primary font-medium">Services</a>
+<a href="#projects" class="text-gray-700 hover:text-primary font-medium">Projects</a>
+<a href="#portfolio" class="text-gray-700 hover:text-primary font-medium">Portfolio</a>
+<a href="#contact" class="text-gray-700 hover:text-primary font-medium">Contact</a>
+</div>
+<button class="md:hidden w-10 h-10 flex items-center justify-center">
+<i class="ri-menu-line ri-lg"></i>
+</button>
+</div>
+</nav>
+<!-- Mobile Menu (Hidden by default) -->
+<div class="fixed inset-0 bg-white z-50 flex flex-col p-10 hidden">
+<div class="flex justify-between items-center mb-10">
+<a href="#" class="text-3xl font-['Pacifico'] text-primary"><img src="assets/images/main_logo.png" width="200px" height="80px" alt="logo"></a>
+<button class="w-10 h-10 flex items-center justify-center">
+<i class="ri-close-line ri-lg"></i>
+</button>
+</div>
+<div class="flex flex-col space-y-6">
+<a href="#about" class="text-xl text-gray-700 hover:text-primary font-medium">About</a>
+<a href="#services" class="text-xl text-gray-700 hover:text-primary font-medium">Services</a>
+<a href="#projects" class="text-xl text-gray-700 hover:text-primary font-medium">Projects</a>
+<a href="#portfolio" class="text-xl text-gray-700 hover:text-primary font-medium">Portfolio</a>
+<a href="#contact" class="text-xl text-gray-700 hover:text-primary font-medium">Contact</a>
+</div>
+</div>
+<!-- Hero Section -->
+<section class="relative h-screen bg-cover bg-center" style="background-image: url('assets/images/bcg_img.jpg')">
+    <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+    <div class="container mx-auto px-6 h-full flex items-center">
+    <div class="relative max-w-3xl">
+    <h1 class="text-7xl font-light text-white mb-6">Experience<br>/Elevated<br>Living</h1>
+    <p class="text-lg text-gray-200 mb-8 max-w-xl">Luxurious spaces, refined design, personalized services, and modern amenities for a sophisticated, upscale lifestyle.</p>
+    <button class="bg-white text-black font-medium px-8 py-3 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Learn more</button>
+   
+    </div>
+    </div>
+    </section>
+<!-- About Section -->
+<section id="about" class="py-20">
+    <div class="container mx-auto px-10">
+    <div class="relative">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- Left Content -->
+        <div class="relative z-10">
+            <div class="inline-flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-full mb-8">
+                <i class="ri-award-line text-primary"></i>
+                <span class="text-primary font-medium">15+ Years of Excellence</span>
+            </div>
+            <h2 class="text-5xl font-bold mb-8 leading-tight">Redefining <br><span class="text-primary">Modern Living</span> Through Design</h2>
+            <div class="space-y-6 mb-10">
+                <p class="text-gray-700 text-lg leading-relaxed">Since 2010, we've been revolutionizing architectural landscapes worldwide. Our innovative approach merges cutting-edge technology with sustainable practices, creating spaces that inspire and endure.</p>
+                <p class="text-gray-700 text-lg leading-relaxed">With over 200 landmark projects across the globe, we've established ourselves as pioneers in creating intelligent, sustainable architecture that shapes the future of urban living.</p>
+            </div>
+            
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-2 gap-8 mb-10">
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <h3 class="text-4xl font-bold text-primary mb-2">200+</h3>
+                    <p class="text-gray-600">Global Projects</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <h3 class="text-4xl font-bold text-primary mb-2">98%</h3>
+                    <p class="text-gray-600">Client Satisfaction</p>
+                </div>
+            </div>
+            <!-- Features -->
+            <div class="flex gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                        <i class="ri-shield-check-line ri-xl text-primary"></i>
+                    </div>
+                    <span class="font-medium">Quality Assured</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                        <i class="ri-leaf-line ri-xl text-primary"></i>
+                    </div>
+                    <span class="font-medium">Eco-Friendly</span>
+                </div>
+            </div>
+        </div>
+        <!-- Right Image Grid -->
+        <div class="relative grid grid-cols-2 gap-4 h-[700px]">
+            <div class="relative h-[400px]">
+                <img src="assets/images/abt_1.jpg" alt="Interior Design" class="w-full h-full object-cover rounded-2xl shadow-lg">
+            </div>
+            <div class="relative h-[400px] mt-16">
+                <img src="assets/images/abt_2.jpg" alt="Exterior Design" class="w-full h-full object-cover rounded-2xl shadow-lg">
+            </div>
+            <!-- <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-white p-6 rounded-2xl shadow-xl w-[80%]">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 rounded-xl overflow-hidden">
+                        <img src="" alt="CEO" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h4 class="font-semibold">futurefixus</h4>
+                        <p class="text-gray-600">Founder</p>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+<!-- Services Section -->
+<section id="services" class="py-20 bg-gray-50">
+<div class="container mx-auto px-10">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">Our Services</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">We offer comprehensive real estate solutions tailored to your unique vision and requirements.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Service 1 -->
+<div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+<div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+<i class="ri-home-4-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Residential Building</h3>
+<p class="text-gray-600 mb-4">Custom-designed homes that reflect your personality and lifestyle, built with premium materials and cutting-edge technology.</p>
+<a href="#" class="text-primary font-medium flex items-center">
+Learn More
+<i class="ri-arrow-right-line ri-sm ml-1"></i>
+</a>
+</div>
+<!-- Service 2 -->
+<div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+<div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+<i class="ri-building-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Commercial Projects</h3>
+<p class="text-gray-600 mb-4">Innovative commercial spaces designed for productivity, efficiency, and aesthetic appeal, tailored to your business needs.</p>
+<a href="#" class="text-primary font-medium flex items-center">
+Learn More
+<i class="ri-arrow-right-line ri-sm ml-1"></i>
+</a>
+</div>
+<!-- Service 3 -->
+<div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+<div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+<i class="ri-cpu-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Smart Home Solutions</h3>
+<p class="text-gray-600 mb-4">Integrated technology systems that enhance comfort, security, and energy efficiency in your living or working space.</p>
+<a href="#" class="text-primary font-medium flex items-center">
+Learn More
+<i class="ri-arrow-right-line ri-sm ml-1"></i>
+</a>
+</div>
+<!-- Service 4 -->
+<div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+<div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+<i class="ri-paint-brush-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Interior Design & Planning</h3>
+<p class="text-gray-600 mb-4">Expert interior design services that transform spaces into functional, beautiful environments that reflect your style.</p>
+<a href="#" class="text-primary font-medium flex items-center">
+Learn More
+<i class="ri-arrow-right-line ri-sm ml-1"></i>
+</a>
+</div>
+<!-- Service 5 -->
+<div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+<div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+<i class="ri-tools-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Renovation & Remodeling</h3>
+<p class="text-gray-600 mb-4">Breathe new life into existing structures with our comprehensive renovation and remodeling services.</p>
+<a href="#" class="text-primary font-medium flex items-center">
+Learn More
+<i class="ri-arrow-right-line ri-sm ml-1"></i>
+</a>
+</div>
+<!-- Service 6 -->
+<div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+<div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+<i class="ri-landscape-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Landscape Architecture</h3>
+<p class="text-gray-600 mb-4">Create stunning outdoor spaces that complement your property and provide functional living areas outside.</p>
+<a href="#" class="text-primary font-medium flex items-center">
+Learn More
+<i class="ri-arrow-right-line ri-sm ml-1"></i>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<section id="projects" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-12">Ongoing Projects</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+    <img src="assets/images/ong_1.jpg" alt="Project 1" class="w-full h-64 object-cover">
+    <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2">Nirvana’s Urban Elite commerical space</h3>
+    <p class="text-gray-600 mb-4">Luxury apartment complex with 200 units</p>
+    <div class="flex justify-between items-center mb-2">
+    <span class="text-gray-500">Progress</span>
+    <span class="text-primary">75%</span>
+    </div>
+    <div class="w-full bg-gray-200 rounded-full h-2">
+    <div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
+    </div>
+    <div class="mt-4 flex justify-between text-sm text-gray-500">
+    <span>Location: Silpa Park, Kondapur</span>
+    <span>Completion: July 2025</span>
+    </div>
+    </div>
+    </div>
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+    <img src="assets/images/ong_2.jpg" alt="Project 2" class="w-full h-64 object-cover">
+    <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2">Nirvana’s Nandanavam</h3>
+    <p class="text-gray-600 mb-4">Praneeth Enclave, Bachupally</p>
+    <div class="flex justify-between items-center mb-2">
+    <span class="text-gray-500">Progress</span>
+    <span class="text-primary">30%</span>
+    </div>
+    <div class="w-full bg-gray-200 rounded-full h-2">
+    <div class="bg-primary h-2 rounded-full" style="width: 45%"></div>
+    </div>
+    <div class="mt-4 flex justify-between text-sm text-gray-500">
+    <span>Location: Bachupally</span>
+    <span>Completion: Ongoing... (2026)</span>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+<!-- Portfolio Section -->
+<section id="portfolio" class="py-20">
+    <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-12">Our Portfolio</h2>
+    <div class="flex justify-center mb-8">
+    <div class="inline-flex bg-gray-100 !rounded-full p-1">
+    <button class="filter-btn px-6 py-2 !rounded-full bg-primary text-white" data-filter="all">All</button>
+    <button class="filter-btn px-6 py-2 !rounded-full text-gray-600 hover:text-primary" data-filter="residential">Residential</button>
+    <button class="filter-btn px-6 py-2 !rounded-full text-gray-600 hover:text-primary" data-filter="commercial">Commercial</button>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+    // Remove active class from all buttons
+    filterBtns.forEach(b => {
+    b.classList.remove('bg-primary', 'text-white');
+    b.classList.add('text-gray-600');
+    });
+    // Add active class to clicked button
+    btn.classList.add('bg-primary', 'text-white');
+    btn.classList.remove('text-gray-600');
+    const filter = btn.getAttribute('data-filter');
+    projectCards.forEach(card => {
+    if (filter === 'all') {
+    card.style.display = 'block';
+    return;
+    }
+    const category = card.querySelector('.bg-primary\\/10').textContent.toLowerCase();
+    if (category === filter) {
+    card.style.display = 'block';
+    } else {
+    card.style.display = 'none';
+    }
+    });
+    });
+    });
+    });
+    </script>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden">
+    <img src="assets/images/Nirvana_Manohara.png" alt="Nirvana's Manohara" class="w-full h-48 object-cover">
+    <div class="p-6">
+    <div class="flex items-center justify-between mb-4">
+    <span class="px-3 py-1 bg-secondary/10 text-primary rounded-full text-sm">Residential</span>
+    <span class="text-gray-500 text-sm">Completed: 2023</span>
+    </div>
+    <h3 class="text-xl font-semibold mb-2">Nirvana's Manohara</h3>
+    <div class="flex items-center text-gray-500 text-sm mb-4">
+    <i class="ri-map-pin-line mr-2"></i>
+    <span>Srinagar Colony, Khammam</span>
+    </div>
+    <div class="flex items-center text-gray-500 text-sm mb-4">
+    <i class="ri-building-4-line mr-2"></i>
+    <span>14375 Sft</span>
+    </div>
+    </div>
+    </div>
+    <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden">
+    <img src="assets/images/Venkata.png" alt="Nirvana's Venkata Lakshmi Nilayam" class="w-full h-48 object-cover">
+    <div class="p-6">
+    <div class="flex items-center justify-between mb-4">
+    <span class="px-3 py-1 bg-secondary/10 text-primary rounded-full text-sm">Residential</span>
+    <span class="text-gray-500 text-sm">Completed: 2024</span>
+    </div>
+    <h3 class="text-xl font-semibold mb-2">Nirvana's Venkata Lakshmi Nilayam</h3>
+    <div class="flex items-center text-gray-500 text-sm mb-4">
+    <i class="ri-map-pin-line mr-2"></i>
+    <span>Silpa Avenue, KPHB Colony</span>
+    </div>
+    <div class="flex items-center text-gray-500 text-sm mb-4">
+    <i class="ri-building-4-line mr-2"></i>
+    <span>8000 Sft</span>
+    </div>
+    </div>
+    </div>
+    <div class="project-card bg-white rounded-lg shadow-lg overflow-hidden">
+    <img src="assets/images/srisurya.png" alt="Nirvana's Sirisurya Nivas" class="w-full h-48 object-cover">
+    <div class="p-6">
+    <div class="flex items-center justify-between mb-4">
+    <span class="px-3 py-1 bg-secondary/10 text-primary rounded-full text-sm">Residential</span>
+    <span class="text-gray-500 text-sm">Completed: 2025</span>
+    </div>
+    <h3 class="text-xl font-semibold mb-2">Nirvana's Sirisurya Nivas</h3>
+    <div class="flex items-center text-gray-500 text-sm mb-4">
+    <i class="ri-map-pin-line mr-2"></i>
+    <span>Viswambara Enclave, KPHB Colony</span>
+    </div>
+    <div class="flex items-center text-gray-500 text-sm mb-4">
+    <i class="ri-building-4-line mr-2"></i>
+    <span>8000 Sft</span>
+    </div>
+    </div>
+    </div>
+
+                     
+                                        
+    </div>
+    </div>
+    </div>
+    </section>
+<!-- Why Choose Us Section -->
+<section class="py-20">
+<div class="container mx-auto px-4 sm:px-6 lg:px-10">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold mb-4">Why Choose Us</h2>
+<p class="text-gray-600 max-w-2xl mx-auto text-base sm:text-lg">We stand out from the competition with our commitment to excellence, innovation, and customer satisfaction.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+<!-- Feature 1 -->
+<div class="bg-white p-6 md:p-8 rounded-lg shadow-md text-center transform transition-transform duration-300 hover:scale-105">
+<div class="w-14 h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+<i class="ri-award-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">Innovative Designs</h3>
+<p class="text-gray-600 text-sm md:text-base">Pushing the boundaries of architecture with forward-thinking concepts and solutions.</p>
+</div>
+<!-- Feature 2 -->
+<div class="bg-white p-8 rounded-lg shadow-md text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+<i class="ri-shield-check-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Premium Materials</h3>
+<p class="text-gray-600">Using only the highest quality materials to ensure durability, safety, and aesthetic appeal.</p>
+</div>
+<!-- Feature 3 -->
+<div class="bg-white p-8 rounded-lg shadow-md text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+<i class="ri-team-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Expert Team</h3>
+<p class="text-gray-600">Our professionals bring decades of combined experience and passion to every project.</p>
+</div>
+<!-- Feature 4 -->
+<div class="bg-white p-8 rounded-lg shadow-md text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+<i class="ri-leaf-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Green Buildings</h3>
+<p class="text-gray-600">Committed to sustainable practices that reduce environmental impact and operating costs.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-12 md:mt-16">
+<!-- Stat 1 -->
+<div class="bg-white p-6 md:p-8 rounded-lg shadow-md text-center transform transition-transform duration-300 hover:scale-105">
+<h3 class="text-3xl md:text-4xl font-bold text-primary mb-2">200+</h3>
+<p class="text-gray-700 font-medium text-sm md:text-base">Projects Completed</p>
+</div>
+<!-- Stat 2 -->
+<div class="bg-white p-8 rounded-lg shadow-md text-center">
+<h3 class="text-4xl font-bold text-primary mb-2">15+</h3>
+<p class="text-gray-700 font-medium">Years Experience</p>
+</div>
+<!-- Stat 3 -->
+<div class="bg-white p-8 rounded-lg shadow-md text-center">
+<h3 class="text-4xl font-bold text-primary mb-2">50+</h3>
+<p class="text-gray-700 font-medium">Expert Team Members</p>
+</div>
+<!-- Stat 4 -->
+<div class="bg-white p-8 rounded-lg shadow-md text-center">
+<h3 class="text-4xl font-bold text-primary mb-2">98%</h3>
+<p class="text-gray-700 font-medium">Client Satisfaction</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials Section -->
+<section class="py-20 bg-gray-50">
+<div class="container mx-auto px-10">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">What Our Clients Say</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Don't just take our word for it. Hear from those who have experienced our services firsthand.</p>
+</div>
+<div class="relative">
+<div class="flex overflow-x-auto pb-8 space-x-6 scrollbar-hide">
+<!-- Testimonial 1 -->
+<div class="testimonial-card min-w-[350px] bg-white p-8 rounded-lg shadow-md">
+<div class="flex items-center mb-6">
+<div class="w-14 h-14 bg-gray-200 rounded-full flex items-center justify-center mr-4">
+<i class="ri-user-line ri-xl text-gray-500"></i>
+</div>
+<div>
+<h4 class="font-semibold">Jennifer Anderson</h4>
+<p class="text-sm text-gray-600">Homeowner, Crystal Towers</p>
+</div>
+</div>
+<div class="flex mb-4">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+</div>
+<p class="text-gray-700">"Working with FutureFixus was a dream come true. From the initial consultation to the final walkthrough, every step was handled with professionalism and care. Our home is not just beautiful but functional in ways we hadn't even imagined."</p>
+</div>
+<!-- Testimonial 2 -->
+<div class="testimonial-card min-w-[350px] bg-white p-8 rounded-lg shadow-md">
+<div class="flex items-center mb-6">
+<div class="w-14 h-14 bg-gray-200 rounded-full flex items-center justify-center mr-4">
+<i class="ri-user-line ri-xl text-gray-500"></i>
+</div>
+<div>
+<h4 class="font-semibold">Marcus Blackwood</h4>
+<p class="text-sm text-gray-600">CEO, Innovate Technologies</p>
+</div>
+</div>
+<div class="flex mb-4">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+</div>
+<p class="text-gray-700">"The commercial space FutureFixus designed for us has transformed our company culture. The innovative use of space, light, and technology has increased productivity and employee satisfaction. Worth every penny invested."</p>
+</div>
+<!-- Testimonial 3 -->
+<div class="testimonial-card min-w-[350px] bg-white p-8 rounded-lg shadow-md">
+<div class="flex items-center mb-6">
+<div class="w-14 h-14 bg-gray-200 rounded-full flex items-center justify-center mr-4">
+<i class="ri-user-line ri-xl text-gray-500"></i>
+</div>
+<div>
+<h4 class="font-semibold">Elena Rodriguez</h4>
+<p class="text-sm text-gray-600">Property Developer</p>
+</div>
+</div>
+<div class="flex mb-4">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-half-fill text-yellow-400"></i>
+</div>
+<p class="text-gray-700">"As a developer, I've worked with many construction firms, but FutureFixus stands out for their attention to detail and commitment to timelines. Their innovative approach to sustainable building has set a new standard in the industry."</p>
+</div>
+</div>
+<div class="flex justify-center mt-6 space-x-2">
+<button class="w-3 h-3 rounded-full bg-primary"></button>
+<button class="w-3 h-3 rounded-full bg-gray-300"></button>
+<button class="w-3 h-3 rounded-full bg-gray-300"></button>
+</div>
+</div>
+</div>
+</section>
+<!-- Process Section -->
+<section class="py-20">
+<div class="container mx-auto px-10">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">Our Process</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">We follow a streamlined process to ensure your project is completed efficiently and to your satisfaction.</p>
+</div>
+<div class="relative">
+<div class="flex flex-col md:flex-row justify-between">
+<!-- Step 1 -->
+<div class="process-step relative flex flex-col md:items-center text-center mb-12 md:mb-0 md:w-1/4">
+<div class="w-14 h-14 bg-gradient-to-br from-primary to-secondary text-white rounded-full flex items-center justify-center mb-4 z-10 md:mx-auto shadow-lg">
+<i class="ri-discuss-line ri-xl"></i>
+</div>
+<h3 class="text-xl font-semibold mb-2">Consultation</h3>
+<p class="text-gray-600 max-w-xs mx-auto">We begin with a thorough consultation to understand your vision, requirements, and budget.</p>
+</div>
+<!-- Step 2 -->
+<div class="process-step relative flex flex-col md:items-center text-center mb-12 md:mb-0 md:w-1/4">
+<div class="w-14 h-14 bg-gradient-to-br from-primary to-secondary text-white rounded-full flex items-center justify-center mb-4 z-10 md:mx-auto shadow-lg">
+<i class="ri-draft-line ri-xl"></i>
+</div>
+<h3 class="text-xl font-semibold mb-2">Design</h3>
+<p class="text-gray-600 max-w-xs mx-auto">Our expert architects and designers create detailed plans and 3D visualizations of your project.</p>
+</div>
+<!-- Step 3 -->
+<div class="process-step relative flex flex-col md:items-center text-center mb-12 md:mb-0 md:w-1/4">
+<div class="w-14 h-14 bg-gradient-to-br from-primary to-secondary text-white rounded-full flex items-center justify-center mb-4 z-10 md:mx-auto shadow-lg">
+<i class="ri-building-line ri-xl"></i>
+</div>
+<h3 class="text-xl font-semibold mb-2">Build</h3>
+<p class="text-gray-600 max-w-xs mx-auto">Our skilled construction team brings the designs to life with precision and quality craftsmanship.</p>
+</div>
+<!-- Step 4 -->
+<div class="process-step relative flex flex-col md:items-center text-center md:w-1/4">
+<div class="w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center mb-4 z-10 md:mx-auto">
+<i class="ri-key-line ri-xl"></i>
+</div>
+<h3 class="text-xl font-semibold mb-2">Handover</h3>
+<p class="text-gray-600 max-w-xs mx-auto">We complete the project with a thorough walkthrough and provide ongoing support after completion.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-gray-50">
+<div class="container mx-auto px-10">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Ready to start your project? Get in touch with us today to schedule a consultation.</p>
+</div>
+<div class="flex flex-col lg:flex-row gap-12">
+<div class="lg:w-1/2">
+<form class="bg-white p-8 rounded-lg shadow-md">
+<div class="mb-6">
+<label for="name" class="block text-gray-700 font-medium mb-2">Full Name</label>
+<input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Your name">
+</div>
+<div class="mb-6">
+<label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+<input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Your email">
+</div>
+<div class="mb-6">
+<label for="phone" class="block text-gray-700 font-medium mb-2">Phone Number</label>
+<input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Your phone number">
+</div>
+<div class="mb-6">
+<label for="service" class="block text-gray-700 font-medium mb-2">Service Interested In</label>
+<div class="relative">
+<select id="service" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent appearance-none pr-8">
+<option value="" selected disabled>Select a service</option>
+<option value="residential">Residential Building</option>
+<option value="commercial">Commercial Projects</option>
+<option value="smart-home">Smart Home Solutions</option>
+<option value="interior">Interior Design & Planning</option>
+<option value="renovation">Renovation & Remodeling</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+<i class="ri-arrow-down-s-line text-gray-400"></i>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+<textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Tell us about your project"></textarea>
+</div>
+<div class="flex items-center mb-6">
+<label class="custom-checkbox mr-2">
+<input type="checkbox">
+<span class="checkbox-mark"></span>
+</label>
+<span class="text-gray-700 text-sm">I agree to receive communications from FutureFixus</span>
+</div>
+<button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 !rounded-button whitespace-nowrap">Submit Request</button>
+</form>
+</div>
+<div class="lg:w-1/2">
+<div class="bg-white p-8 rounded-lg shadow-md mb-8">
+<h3 class="text-xl font-semibold mb-6">Our Office</h3>
+<div class="flex items-start mb-4">
+<div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4 mt-1">
+<i class="ri-map-pin-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Address</h4>
+<p class="text-gray-600">Hyderabad Telanagana 500090</p>
+</div>
+</div>
+<div class="flex items-start mb-4">
+<div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4 mt-1">
+<i class="ri-phone-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Phone</h4>
+<p class="text-gray-600">+91 763737383839</p>
+</div>
+</div>
+<div class="flex items-start mb-4">
+<div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4 mt-1">
+<i class="ri-mail-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Email</h4>
+<p class="text-gray-600">info@futurefixus.com</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4 mt-1">
+<i class="ri-time-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium mb-1">Working Hours</h4>
+<p class="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM</p>
+</div>
+</div>
+</div>
+<div class="rounded-lg overflow-hidden shadow-md h-[300px] relative">
+<img src="map" alt="Office Location Map" class="absolute w-full h-full object-cover">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-16 bg-gradient-to-r from-primary to-secondary">
+<div class="container mx-auto px-10 text-center">
+<h2 class="text-3xl font-bold text-white mb-6">Let's build your future – together.</h2>
+<p class="text-white/80 max-w-2xl mx-auto mb-8">Ready to transform your vision into reality? Our team of experts is just a click away.</p>
+<button class="bg-white text-primary hover:bg-gray-100 px-8 py-3 font-medium !rounded-button whitespace-nowrap">Schedule a Consultation</button>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gradient-to-b from-gray-900 to-black text-white pt-16 pb-8">
+<div class="container mx-auto px-10">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+<!-- Company Info -->
+<div>
+<a href="#" class="text-2xl font-['Pacifico'] text-white mb-6 block"><img src="assets/images/footer_logo.png" width="200px" height="80px" alt="logo"></a>
+<p class="text-gray-400 mb-6">Crafting tomorrow's homes, today. We are committed to innovation, sustainability, and excellence in every project we undertake.</p>
+
+</div>
+<!-- Quick Links -->
+<div>
+<h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+<ul class="space-y-3">
+<li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+<li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+<li><a href="#projects" class="text-gray-400 hover:text-white transition-colors">Projects</a></li>
+<li><a href="#portfolio" class="text-gray-400 hover:text-white transition-colors">Portfolio</a></li>
+<li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+</ul>
+</div>
+<!-- Services -->
+<div>
+<h3 class="text-lg font-semibold mb-6">Services</h3>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Residential Building</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Commercial Projects</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Smart Home Solutions</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Interior Design</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Renovation</a></li>
+</ul>
+</div>
+<!-- Newsletter -->
+<div>
+<h3 class="text-lg font-semibold mb-6">Socail links</h3>
+<div class="flex space-x-4">
+    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+    <i class="ri-facebook-fill"></i>
+    </a>
+    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+    <i class="ri-twitter-x-fill"></i>
+    </a>
+    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+    <i class="ri-instagram-line"></i>
+    </a>
+    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+    <i class="ri-linkedin-fill"></i>
+    </a>
+    </div>
+</div>
+</div>
+<div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 FutureFixus. All rights reserved.</p>
+<div class="flex space-x-6">
+<a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+<a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+<a href="#" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Mobile menu toggle
+const menuButton = document.querySelector('button');
+const mobileMenu = document.querySelector('.fixed.inset-0.bg-white');
+const closeButton = mobileMenu.querySelector('button');
+menuButton.addEventListener('click', function() {
+mobileMenu.classList.remove('hidden');
+});
+closeButton.addEventListener('click', function() {
+mobileMenu.classList.add('hidden');
+});
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+mobileMenu.classList.add('hidden');
+}
+const targetId = this.getAttribute('href');
+if (targetId === '#') return;
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 80,
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+</body>
+</html>
